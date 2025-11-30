@@ -1,0 +1,7 @@
+pandas
+pyautogui
+customtkinter
+fpdf2
+numpy
+matplotlib
+seaborn
