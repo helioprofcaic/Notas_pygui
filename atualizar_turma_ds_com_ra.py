@@ -3,6 +3,18 @@ import os
 import re
 import unicodedata
 
+<<<<<<< HEAD
+=======
+# --- Dados fornecidos pelo usuário (lista do site) ---
+site_list_raw = """
+ESTUDANTE	NM1	NM2	NM3	1MT	1TF
+ANTORIA DE LIMA ARAÚJO
+Código RA: 71768434567
+
+...
+"""
+
+>>>>>>> 85cbb6847caa19b732e3f391d07251f062caa0a3
 def strip_accents(text):
     """Remove acentos de uma string."""
     try:

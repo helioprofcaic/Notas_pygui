@@ -1,13 +1,18 @@
 # Projeto de Automação de Notas
 
-Este projeto contém um conjunto de scripts Python para automatizar o processo de digitação de notas em sistemas acadêmicos, utilizando interfaces gráficas para facilitar o uso e minimizar erros.
+## Sobre o Projeto
 
-## Funcionalidades Principais
+Digitar as notas de dezenas de alunos em sistemas acadêmicos online é uma tarefa repetitiva, demorada e suscetível a erros. Este projeto nasceu para resolver esse problema, oferecendo um conjunto de ferramentas em Python que automatiza completamente o processo de inserção de notas.
 
-*   **Interface Gráfica para Automação:** Execute a digitação de notas de forma segura e controlada através de uma GUI amigável.
-*   **Formulário de Edição de Notas:** Visualize, edite e salve as notas do Ensino Fundamental de forma simples e rápida.
-*   **Processamento de Dados:** Converta relatórios de notas (em formato `.csv`) em arquivos de texto (`.txt`) formatados e prontos para a automação.
-*   **Scripts de Linha de Comando:** Alternativas disponíveis para usuários que preferem o terminal.
+A solução processa um relatório de notas consolidado (`.csv`), gera arquivos de automação individuais e, em seguida, utiliza `pyautogui` para "pilotar" o navegador, preenchendo os campos de nota de forma rápida e precisa.
+
+### ✨ Principais Funcionalidades
+
+*   **Flexibilidade Total:** Lida com diferentes fontes de dados, separando a lógica para turmas de cursos técnicos (via CSV) e do Ensino Fundamental (via formulário de edição).
+*   **Interfaces Gráficas (GUI):** Construídas com `CustomTkinter`, as interfaces guiam o usuário de forma visual e intuitiva, desde a edição de notas até a execução da automação.
+*   **Ferramenta de Linha de Comando (CLI):** Uma poderosa CLI chamada `notas` centraliza todas as operações do projeto, permitindo consultar RAs, gerar arquivos e executar scripts com comandos simples no terminal.
+*   **Configuração Centralizada:** Um arquivo `map_disciplinas.json` permite configurar todas as turmas e disciplinas sem a necessidade de alterar o código-fonte.
+*   **Simulação de Dados:** Um script dedicado (`simulando_dados.py`) gera um ambiente de teste completo com dados fictícios, ideal para demonstrações e desenvolvimento.
 
 ---
 
