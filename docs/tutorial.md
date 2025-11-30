@@ -43,7 +43,12 @@ O objetivo é simplificar e automatizar a inserção de notas, permitindo que vo
         ```
     Você verá `(.venv)` no início da linha de comando, indicando que o ambiente está ativo.
 
-4.  **Instale as bibliotecas necessárias:**
+4.  **Atualize as ferramentas de empacotamento:**
+    ```bash
+    python -m pip install --upgrade pip setuptools wheel
+    ```
+
+5.  **Instale as bibliotecas do projeto:**
     ```bash
     pip install pandas pyautogui customtkinter
     ```

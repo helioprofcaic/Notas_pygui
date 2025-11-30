@@ -5,3 +5,4 @@ fpdf2
 numpy
 matplotlib
 seaborn
+click

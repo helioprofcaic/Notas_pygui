@@ -9,20 +9,21 @@ Ele combina uma lista de alunos copiada diretamente do site (com nomes e RAs cor
 ## Como Usar
 
 1.  **Copiar a Lista de Alunos**: No sistema acadêmico, copie a lista de alunos que inclui o nome completo e o "Código RA" de cada um.
-2.  **Colar no Script**: Cole o texto copiado dentro da string `site_list_raw` no próprio arquivo `atualizar_turma_ds_com_ra.py`.
-3.  **Executar o Script**:
+2.  **Criar o Arquivo de Entrada**: Crie um arquivo de texto chamado `ds_seduc_site.txt` dentro da pasta `inputs/`.
+3.  **Colar no Arquivo**: Cole a lista de alunos que você copiou dentro deste novo arquivo.
+4.  **Executar o Script**:
     ```bash
     python atualizar_turma_ds_com_ra.py
     ```
 
 ## Entradas (Arquivos Necessários)
 
+*   **`inputs/ds_seduc_site.txt`**: Um arquivo de texto contendo a lista de alunos copiada diretamente do site do sistema acadêmico. Este arquivo deve incluir o nome do aluno e, na linha seguinte, o "Código RA".
 *   **`output/relatorio_consolidado.csv`**: O arquivo CSV com as notas consolidadas, de onde as notas (AV1, AV2, Média Final) serão extraídas.
-*   **Lista de Alunos (código-fonte)**: A lista de alunos e RAs colada na variável `site_list_raw` dentro do script.
 
 ## Saídas (Arquivos Gerados)
 
-*   **`turma_ds.txt`**: Um novo arquivo de texto gerado na raiz do projeto. Este arquivo contém a lista de alunos na ordem exata da variável `site_list_raw`, com os RAs corretos e as notas correspondentes extraídas do CSV.
+*   **`turma_ds.txt`**: Um novo arquivo de texto gerado na raiz do projeto. Este arquivo contém a lista de alunos na ordem exata do arquivo `ds_seduc_site.txt`, com os RAs corretos e as notas correspondentes extraídas do CSV.
     *   **Observação**: Se um aluno da lista do site não for encontrado no CSV, ele será adicionado ao arquivo com notas `0.0`, e um aviso será exibido no console.
 
 ## Uso Prático

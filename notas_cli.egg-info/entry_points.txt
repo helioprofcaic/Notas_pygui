@@ -1,0 +1,2 @@
+[console_scripts]
+notas = cli.notas_cli:cli

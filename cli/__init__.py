@@ -1,0 +1,1 @@
+# Este arquivo vazio transforma a pasta 'cli' em um pacote Python.

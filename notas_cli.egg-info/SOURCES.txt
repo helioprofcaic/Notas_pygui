@@ -1,0 +1,11 @@
+README.md
+setup.py
+cli/__init__.py
+cli/notas_cli.py
+docs/atualizar_turmas_com_ra.py
+notas_cli.egg-info/PKG-INFO
+notas_cli.egg-info/SOURCES.txt
+notas_cli.egg-info/dependency_links.txt
+notas_cli.egg-info/entry_points.txt
+notas_cli.egg-info/requires.txt
+notas_cli.egg-info/top_level.txt

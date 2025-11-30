@@ -3,100 +3,6 @@ import os
 import re
 import unicodedata
 
-# --- Dados fornecidos pelo usuário (lista do site) ---
-site_list_raw = """
-ESTUDANTE	NM1	NM2	NM3	1MT	1TF
-AIRLA KIRIA DA SILVA ARAÚJO
-Código RA: 71768489246
-
-ALLEYSSA IZABELLY SOUSA TAVARES
-Código RA: 71873358261
-
-ANTONIO LUIZ LEAL DE OLIVEIRA
-Código RA: 61217655808
-
-BRUNO LUAN DA SILVA PAIVA
-Código RA: 71754062199
-
-CICERA MAYANE SANTOS OLIVEIRA
-Código RA: 58315691589
-
-DIONIZIO DOS SANTOS OLIVEIRA
-Código RA: 34094958240
-
-ELLEN ISABELLY DA SILVA SANTOS
-Código RA: 71850626529
-
-EMILY FERNANDA SILVA DE MELO
-Código RA: 71848140304
-
-FABRÍCIO RYAN MARTINS DE ASSIS NOBRE
-Código RA: 72227976578
-
-FRANCISCO EDUARDO SANTOS BEZERRA
-Código RA: 71845171500
-
-GABRIELLY MACÊDO DOS SANTOS
-Código RA: 70498401855
-
-GEOVANA VAZ VERAS DE ARAUJO
-Código RA: 49833252435
-
-HAVILLA HAVENNA RODRIGUES DOS SANTOS
-Código RA: 71920608990
-
-HELEN MARQUES DA SILVA
-Código RA: 69636648590
-
-INGRID VITORIA LIMA DE SOUSA
-Código RA: 74558280084
-
-JAMILE VITORIA DA SILVA LIMA
-Código RA: 69454865617
-
-JHONATAN GOMES DA SILVA
-Código RA: 71763528138
-
-JOSÉ CARLOS DA SILVA
-Código RA: 71732737770
-
-KALLYNE VITÓRIA BRANDÃO PEREIRA
-Código RA: 71882281284
-
-MARIA FRANCIELLE VIDAL DA SILVA
-Código RA: 74675542182
-
-MARIA ISABELE DE SOUSA SANTOS
-Código RA: 57017138104
-
-MIGUEL ARTHUR BORGES DA SILVA
-Código RA: 17278621380
-
-PEDRO LUCAS ALVES LEAL
-Código RA: 64798056871
-
-RAEL VÍTOR DA SILVA RAMOS
-Código RA: 71758139900
-
-SAMUEL JOHNATAN DA SILVA SOARES
-Código RA: 71907847413
-
-SARAH ALVES DE BRITO
-Código RA: 71263869866
-
-SAVIO EDUARDO OLIVEIRA VELOSO
-Código RA: 71779346549
-
-THIERRY HANRRY DO NASCIMENTO SILVA
-Código RA: 53858999121
-
-VITORIA BEATRIZ ARAUJO CRUZ MORAIS
-Código RA: 34075578305
-
-WELBERTI GOMES DE CARVALHO
-Código RA: 71877628301
-"""
-
 def strip_accents(text):
     """Remove acentos de uma string."""
     try:
@@ -137,16 +43,26 @@ def parse_site_list(raw_text):
 def gerar_turma_ds_com_ra():
     output_turma_ds_path = 'turma_ds.txt'
     grades_csv_path = os.path.join('output', 'relatorio_consolidado.csv')
+    site_list_path = os.path.join('inputs', 'ds_seduc_site.txt')
     curso_alvo = 'Técnico em Desenvolvimento de Sistemas'
 
-    # 1. Parsear a lista do site para obter nomes e RAs corretos
-    print("Processando a lista de alunos fornecida pelo site...")
+    # 1. Ler a lista de alunos do site a partir do arquivo
+    print(f"Lendo a lista de alunos do site de '{site_list_path}'...")
+    try:
+        with open(site_list_path, 'r', encoding='utf-8') as f:
+            site_list_raw = f.read()
+    except FileNotFoundError:
+        print(f"ERRO: O arquivo da lista do site '{site_list_path}' não foi encontrado.")
+        print("Por favor, crie este arquivo com a lista de alunos copiada do site.")
+        return
+
+    # 2. Parsear a lista do site para obter nomes e RAs corretos
     site_students = parse_site_list(site_list_raw)
     if not site_students:
         print("ERRO: Nenhuma informação de aluno válida encontrada na lista do site.")
         return
 
-    # 2. Ler o arquivo de notas
+    # 3. Ler o arquivo de notas
     try:
         print(f"Lendo as notas de '{grades_csv_path}'...")
         df_grades = pd.read_csv(grades_csv_path)
@@ -158,7 +74,7 @@ def gerar_turma_ds_com_ra():
         print(f"Ocorreu um erro ao ler o arquivo CSV: {e}")
         return
 
-    # 3. Filtrar o CSV pelo curso e preparar para a junção
+    # 4. Filtrar o CSV pelo curso e preparar para a junção
     df_curso = df_grades[df_grades['curso'] == curso_alvo].copy()
     if df_curso.empty:
         print(f"Nenhum dado encontrado para o curso '{curso_alvo}' no arquivo de notas.")
@@ -170,7 +86,7 @@ def gerar_turma_ds_com_ra():
     output_content = []
     alunos_nao_encontrados_no_csv = []
 
-    # 4. Iterar sobre a lista do site para manter a ordem e adicionar notas
+    # 5. Iterar sobre a lista do site para manter a ordem e adicionar notas
     for student_info in site_students:
         # Limpa, normaliza espaços, remove acentos e padroniza o nome do aluno da lista do site
         master_name_norm = strip_accents(normalize_whitespace(student_info['nome'].strip())).upper()
@@ -206,7 +122,7 @@ def gerar_turma_ds_com_ra():
             ]
             output_content.append('\n'.join(block))
 
-    # 5. Escrever o novo arquivo turma_ds.txt
+    # 6. Escrever o novo arquivo turma_ds.txt
     if output_content:
         print(f"Escrevendo novo arquivo '{output_turma_ds_path}' com RAs e notas atualizadas.")
         with open(output_turma_ds_path, 'w', encoding='utf-8') as f:
