@@ -46,7 +46,7 @@ Abaixo está a documentação de cada script principal do projeto. Cada link lev
 
 ---
 
-## Ferramenta de Linha de Comando (CLI)
+## [Ferramenta de Linha de Comando (CLI)](./docs/notas_cli.md)
 
 Para agilizar ainda mais o fluxo de trabalho, o projeto inclui uma poderosa ferramenta de linha de comando chamada `notas`. Com ela, você pode executar a maioria das tarefas do projeto diretamente do terminal, como consultar RAs, gerar arquivos de automação e iniciar as interfaces gráficas.
 
